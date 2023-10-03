@@ -1,5 +1,5 @@
 # AprilTag ROS 2
-### [AprilTag Detection and Tracking](https://github.com/Tinker-Twins/AprilTag) with ROS 2
+### AprilTag Detection and Tracking with ROS 2
 
 
 ## Build:
@@ -26,3 +26,6 @@
 ```bash
 $ ros2 launch apriltag_ros apriltag_ros.launch.py
 ```
+
+## Acknowledgement:
+This repository was heavily adapted from the [AprilTag Detection and Tracking from Tinker-Twins](https://github.com/Tinker-Twins/AprilTag).
