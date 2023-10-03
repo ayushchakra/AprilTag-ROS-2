@@ -30,21 +30,17 @@ from launch.actions import ExecuteProcess
 def generate_launch_description():
     return LaunchDescription([
         ExecuteProcess(
-            cmd=[['ros2 launch v4l2_camera camera.launch.py']],
+            cmd=[['ros2 run usb_cam usb_cam_node_exe --ros-args --params-file ~/mp3_ws/src/AprilTag-ROS-2/usb_cam/config/params_2.yaml']],
             shell=True,
         ),
         ExecuteProcess(
-            cmd=[['ros2 run image_transport republish compressed raw --ros-args --remap in/compressed:=image/compressed --remap out:=image/uncompressed']],
-            shell=True,
-        ),
-        ExecuteProcess(
-            cmd=[['ros2 run apriltag_ros apriltag_node --ros-args -r image_rect:=/image/uncompressed -r camera_info:=/camera_info --params-file `ros2 pkg prefix apriltag_ros`/share/apriltag_ros/cfg/tags_36h11.yaml']],
+            cmd=[['ros2 run apriltag_ros apriltag_node --ros-args -r image_rect:=/image_raw -r camera_info:=/camera_info --params-file `ros2 pkg prefix apriltag_ros`/share/apriltag_ros/cfg/tags_36h11.yaml']],
             shell=True,
         ),
         Node(
             package='rviz2',
             executable='rviz2',
-            name='odometry_rviz',
+            name='apriltag_rviz',
             arguments=['-d', [FindPackageShare("apriltag_ros"), '/rviz', '/apriltag.rviz',]]
         ),
     ])
